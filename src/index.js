@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from 'react-router-dom';
 import './index.css';
+import App from './Board/App';
 
 class Square extends React.Component {
     constructor(props) {
@@ -47,14 +49,6 @@ class Board extends React.Component {
     }
 
     render() {
-        const boardSquare = this.state.squares;
-        for(let i = 0; i < 3; i++) {
-            (<div></div>)
-        }
-        const boardHtml = boardSquare.map( (data, index) => {
-            {this.renderSquare(index)}
-        });
-
         return (
             
             <div>
@@ -187,7 +181,11 @@ class Game extends React.Component {
   // ========================================
   
   ReactDOM.render(
-    <Game />,
+    // <Game />,
+    // <App />,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     document.getElementById('root')
   );
   
