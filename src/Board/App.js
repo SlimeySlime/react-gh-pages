@@ -25,8 +25,8 @@ class App extends React.Component{
             </div> 
             <div className="route">
                 <Route exact path="/" component={List} />
-                <Route exact path="/read" component={Read} />
-                <Route exact path="/wrtie" component={Write} />
+                <Route path="/read" component={Read} />
+                <Route path="/write" component={Write} />
             </div>
             </div>
         );
