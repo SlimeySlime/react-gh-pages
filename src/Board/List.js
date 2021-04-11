@@ -20,11 +20,49 @@ const Button = styled.div`
 `
 const ListItem = styled.div`
     width : 100%;
+    border-top : 1px solid;
+    margin-top : 10px;
+    padding : 0px 10px;
+    a {
+        text-decoration : none;
+        h3 {
+            margin : 0;
+            color : #212121;
+        }
+        p {
+            font-size : 5px;
+            padding : 10px 0 0 0;
+            color : #787878;
+        }
+        &:hover {
+            h3 {
+                color : #0066ff;
+            }
+        }
+    }
+    
+
 `
 
 class List extends Component { 
     state = {
-        boards:[],
+        // boards:[],
+        boards : [
+            {
+                no : 1,
+                writer : 'jinsu',
+                title : '1번글',
+                content : "제곧내",
+                data : new Date(),
+            },
+            {
+                no : 2,
+                writer : 'jinsu2',
+                title : '2번글',
+                content : "제곧내",
+                data : new Date(),
+            }
+        ]
     };
 
     handleChange = (e) => {
@@ -35,10 +73,15 @@ class List extends Component {
             }
         );
     };
+
+    dataAddTest= (e) => {
+
+    }
+
     // 로딩
     loadingData = async() => {
         try{
-            const response = await axios.get("https//localhost:3000/board");
+            const response = await axios.get("/board");
             this.setState({
                 //boards : 'test',
                 boards : response.data,
@@ -59,7 +102,7 @@ class List extends Component {
             <Wrap>
             <div>
             <h2> List </h2>
-            {/* {boards} */}
+            {/* 디버그용 json stringfy */}
             {boards && <textarea
                 name="getBoards2"
                 onChange={handleChange}
@@ -76,6 +119,9 @@ class List extends Component {
                     </ListItem>
                 );
             })}
+            <form onSubmit>
+
+            </form>
             <Button>
                 <Link to={'/write'}>글쓰기</Link>
             </Button>
