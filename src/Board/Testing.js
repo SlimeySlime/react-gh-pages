@@ -12,7 +12,7 @@ class Testing extends React.Component{
 
     loadingData = async() => {
         try{
-            const response = await axios.get("/board");
+            const response = await axios.get("http://localhost:3000/write");
             this.setState({
                 //boards : 'test',
                 boards : response.data,

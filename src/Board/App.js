@@ -3,6 +3,7 @@ import Read from './Read';
 import Write from './Write';
 import List from './List';
 import Testing from './Testing';
+import OnePageBoard from './OnePageBoard';
 import {Route, Link} from 'react-router-dom';
 
 class App extends React.Component{
@@ -25,6 +26,9 @@ class App extends React.Component{
                     <li>
                         <Link to='/test'>Testing</Link>
                     </li>
+                    <li>
+                        <Link to='/oneboard'>One Board</Link>
+                    </li>
                 </ul>
             </div> 
             <div className="route">
@@ -32,6 +36,7 @@ class App extends React.Component{
                 <Route path="/read" component={Read} />
                 <Route path="/write" component={Write} />
                 <Route path='/test' component={Testing} />
+                <Route path='/oneboard' component={OnePageBoard} />
             </div>
             </div>
         );
