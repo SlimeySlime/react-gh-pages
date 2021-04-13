@@ -58,17 +58,23 @@ function OnePageBoard (){
     }
     const post = e => {
         const {value, name} = e.target;
-        setBoard({
-            ...board,
-            
-        })
+        const newBoard = {
+            title,
+            content,
+        }
+        setBoard(board.concat(newBoard));
+        
+        setInputs({
+            title : '',
+            content : ''
+        });
     }
 
     const resetInput = () => {
         setInputs({
             title : '',
             content : ''
-        })
+        });
         nameInput.current.focus();
         nameInput.current.value = '';
     }
@@ -82,20 +88,20 @@ function OnePageBoard (){
                 <Button onClick={post}> 추가 </Button>
                 <Button onClick={resetInput}> 내용 초기화 </Button>
             </Input>
-            {board.map( (item) => {
+            {/* {board.map( (item) => {
                 return (
                     <ListItem key={item.key}>
                         <h3>{item.title}</h3>
                         <p>{item.content}</p>
                     </ListItem>
                 );
-            })}
+            })} */}
             <ListItem>
 
             </ListItem>
 
             <div><b>값 : </b>{title} ({content})</div>
-            {/* <div>{JSON.stringify(inputs)}</div> */}
+            <div>{JSON.stringify(board)}</div>
 
         </div>
     );
