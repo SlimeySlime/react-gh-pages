@@ -20,21 +20,30 @@ const Input = styled.div`
     }
 `
 const ListItem = styled.div`
+    margin : 5px;
     border-top : 1px solid #f33;
     p {
         font-size : 12px;
     }
+    button {
+        border : 1px solid;
+        border-radius : 5px;
+    }
 `
 
 function OnePageBoard (){
-    const [boardData, setBoard] = useState({
-        board : [
-            {
-                title : "첫글추",
-                content : "1빠",
-            }
-        ],
-    })
+    const [boardData, setBoard] = useState([
+    
+        {
+            title : "첫글추",
+            content : "글내용",
+        },
+        {
+            title : "두번째 글",
+            content : "글내용2",
+        }
+        
+    ]);
     const [inputs, setInputs] = useState(
         {
             title : '',
@@ -44,25 +53,26 @@ function OnePageBoard (){
     const { title, content} = inputs;
     const { board } = boardData;
     const nameInput = useRef();
-
+    
+    // onChange : 즉시 value에 반영
     const onChange = e => {
         // e : syntheticBaseEvent / 수많은 이벤트 데이터의 집합.
         // 그 중에 target에는 value(값)과 name(블록name) 등 등 target 블록의 값들이 담겨져있음
         const {value, name} = e.target;
         setInputs({
-            ...inputs,
-            [name] : value, 
-            // e.target 값의 name이 title 이면 [title] : value 
-            // target name이 content면 [content] : value
+            ...inputs,          // e.target 값의 name이 title 이면 [title] : value 
+            [name] : value,     // target name이 content면 [content] : value
         });
     }
+    // 게시글 쓰기 
     const post = e => {
         const {value, name} = e.target;
         const newBoard = {
             title,
             content,
         }
-        setBoard(board.concat(newBoard));
+        // setBoard(board.concat(newBoard));
+        setBoard([...boardData, newBoard]);
         
         setInputs({
             title : '',
@@ -88,14 +98,15 @@ function OnePageBoard (){
                 <Button onClick={post}> 추가 </Button>
                 <Button onClick={resetInput}> 내용 초기화 </Button>
             </Input>
-            {/* {board.map( (item) => {
+            {boardData.map( (item) => {
                 return (
                     <ListItem key={item.key}>
                         <h3>{item.title}</h3>
                         <p>{item.content}</p>
+                        <button>삭제하기</button>
                     </ListItem>
                 );
-            })} */}
+            })}
             <ListItem>
 
             </ListItem>
