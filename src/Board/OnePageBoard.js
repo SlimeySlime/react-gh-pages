@@ -79,6 +79,15 @@ function OnePageBoard (){
             content : ''
         });
     }
+    
+    const postDelete = (key) => {
+        setBoard(boardData.filter(board => board.key !== key));
+        // console.log(key);
+    }
+
+    const onRemove = () => {
+
+    }
 
     const resetInput = () => {
         setInputs({
@@ -101,9 +110,9 @@ function OnePageBoard (){
             {boardData.map( (item) => {
                 return (
                     <ListItem key={item.key}>
-                        <h3>{item.title}</h3>
+                        <h3>{item.key} : {item.title}</h3>
                         <p>{item.content}</p>
-                        <button>삭제하기</button>
+                        <button key={item.key} onClick={ () => postDelete(item.key)}>삭제하기</button>
                     </ListItem>
                 );
             })}

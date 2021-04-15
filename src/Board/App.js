@@ -4,6 +4,7 @@ import Write from './Write';
 import List from './List';
 import Testing from './Testing';
 import OnePageBoard from './OnePageBoard';
+import TodoApp from './TodoComponents/TodoApp';
 import {Route, Link} from 'react-router-dom';
 
 class App extends React.Component{
@@ -29,6 +30,9 @@ class App extends React.Component{
                     <li>
                         <Link to='/oneboard'>One Board</Link>
                     </li>
+                    <li>
+                        <Link to='/todo'>Todo List</Link>
+                    </li>
                 </ul>
             </div> 
             <div className="route">
@@ -37,6 +41,7 @@ class App extends React.Component{
                 <Route path="/write" component={Write} />
                 <Route path='/test' component={Testing} />
                 <Route path='/oneboard' component={OnePageBoard} />
+                <Route path='/todo' component={TodoApp} />
             </div>
             </div>
         );
