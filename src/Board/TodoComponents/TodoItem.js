@@ -2,6 +2,7 @@ import React from 'react';
 // https://react-icons.github.io/react-icons/
 import {MdDone, MdDelete} from 'react-icons/md';    
 import styled, {css} from 'styled-components';
+import {useTodoDispatch} from './TodoContext';
 
 const Remove = styled.div`
     display : flex;
@@ -68,12 +69,18 @@ const Text = styled.div`
 `
 
 function TodoItem({id, done, text}) {
+    const dispatch = useTodoDispatch();
+    const onToggle = () => dispatch({type : 'TOGGLE', id});
+    const onDelete = () => dispatch({type : 'DELETE', id});
+
     return (
         <TodoItemBlock>
             {/* done 이면 <MdDone/> 적용 */}
-            <CheckCircle done={done}>{ done && <MdDone/> }</CheckCircle>    
+            <CheckCircle done={done} onClick={onToggle} >
+                { done && <MdDone/> }
+            </CheckCircle>    
             <Text done={done}>{text}</Text>
-            <Remove>
+            <Remove onClick={onDelete}>
                 <MdDelete />
             </Remove>
         </TodoItemBlock>
@@ -81,4 +88,5 @@ function TodoItem({id, done, text}) {
 }
 
 
-export default TodoItem;
+// export default TodoItem;
+export default React.memo(TodoItem);    // -> memorize로 불필요한 리렌더링 방지
