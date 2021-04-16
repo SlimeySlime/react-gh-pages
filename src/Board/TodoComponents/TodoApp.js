@@ -3,6 +3,10 @@ import styled, {createGlobalStyle} from 'styled-components';
 import TodoTemplate from './TodoTemplate';
 import TodoHead from './TodoHead';
 import TodoList from './TodoList';
+import TodoCreate from './TodoCreate';
+
+import {TodoProvider} from './TodoContext';
+
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -13,13 +17,14 @@ const GlobalStyle = createGlobalStyle`
 function TodoApp() {
     return(
         <div>
+        <TodoProvider>
             <GlobalStyle/>  
-            <h3> todo list</h3>
             <TodoTemplate>
                 <TodoHead>todo head</TodoHead>
                 <TodoList></TodoList>
+                <TodoCreate></TodoCreate>
             </TodoTemplate>
-            
+        </TodoProvider>
         </div>
     );
 }

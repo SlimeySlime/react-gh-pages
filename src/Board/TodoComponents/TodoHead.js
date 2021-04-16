@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useTodoState} from './TodoContext';
+
 
 const TodoHeadBlock = styled.div`
     padding : 48px 32px 32px 24px;  // 위 좌우 아래 순서
@@ -24,12 +26,21 @@ const TodoHeadBlock = styled.div`
 `
 
 function TodoHead(){
-
+    const todos = useTodoState();
+    const remains = todos.filter(todos => !todos.done);
+    const today = new Date();
+    const dateString = today.toLocaleDateString('ko-KR', {
+        year : 'numeric',
+        month : 'long',
+        day : 'numeric',
+    })
+    const dayName = today.toLocaleDateString('ko-KR', { weekday : 'long'});
+    // 왜 dateString.month 로 접근은 못할까?
     return (
         <TodoHeadBlock>
-            <h1>2021년 4월 15일</h1>
-            <div className="day">목요일</div>
-            <div className="tasks-left">할 일 2개 남음</div>
+            <h1>{dateString}</h1>
+            <div className="day">날짜 : {dayName}</div>
+            <div className="tasks-left">할 일 {remains.length}개 남음</div>
         </TodoHeadBlock>
     );
 }

@@ -16,7 +16,7 @@ const Input = styled.div`
     border : 1px solid;
     padding : 2px;
     input {
-        width = 10px;
+        width : 10px;
     }
 `
 const ListItem = styled.div`

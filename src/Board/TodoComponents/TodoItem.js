@@ -1,10 +1,11 @@
 import React from 'react';
-import {MdDone, MdDelete} from 'react-icons/md';
+// https://react-icons.github.io/react-icons/
+import {MdDone, MdDelete} from 'react-icons/md';    
 import styled, {css} from 'styled-components';
 
 const Remove = styled.div`
     display : flex;
-    align-item : center;
+    align-items : center;
     justify-content : center;
     color : #fea2e6;
     font-size : 24px;
@@ -17,7 +18,7 @@ const Remove = styled.div`
 
 const TodoItemBlock = styled.div`
     display : flex;
-    align-item : center;
+    align-items : center;
     padding-top : 12px;
     padding-bottom : 12px;
     &:hover {
@@ -28,15 +29,20 @@ const TodoItemBlock = styled.div`
 `
 
 const CheckCircle = styled.div`
-    width : 32px;
-    height : 32px;
+    display : flex; //
+    width : 24px;
+    height : 24px;
+    font-size : 18px;
+
     align-items : center;
     justify-content : center;
     margin-right : 20px;
+    
     border : 1px solid #ced4d4;
-    border-radius : 10px;
+    border-radius : 25px;
 
-    ${props =>
+    cursor : pointer;
+    ${props =>  
         props.done && 
         css `
             border : 1px solid #38d9d9;
@@ -47,10 +53,25 @@ const CheckCircle = styled.div`
     }
 `
 
+const Text = styled.div`
+    flex : 1;
+    font-size : 24px;
+    color : #494960;    
+    ${props =>
+        props.done &&
+        css `
+            color : #ced4d4;
+            text-decoration : line-through;
+        `
+    }
+    
+`
+
 function TodoItem({id, done, text}) {
     return (
         <TodoItemBlock>
-            <CheckCircle done={done}>{ done && <MdDone/> }</CheckCircle>
+            {/* done 이면 <MdDone/> 적용 */}
+            <CheckCircle done={done}>{ done && <MdDone/> }</CheckCircle>    
             <Text done={done}>{text}</Text>
             <Remove>
                 <MdDelete />
@@ -60,8 +81,4 @@ function TodoItem({id, done, text}) {
 }
 
 
-const Text = styled.div`
-    flex : 1;
-    font-size : 24px;
-`
 export default TodoItem;
